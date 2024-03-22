@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeDeChambre{% endblock %}
+
+{% block body %}
+    <h1>TypeDeChambre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ type_de_chambre.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ type_de_chambre.libelle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_type_de_chambre_index') }}">back to list</a>
+
+    <a href="{{ path('app_type_de_chambre_edit', {'id': type_de_chambre.id}) }}">edit</a>
+
+    {{ include('type_de_chambre/_delete_form.html.twig') }}
+{% endblock %}

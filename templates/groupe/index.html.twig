@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Groupe index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center">Groupes</h1>
+  
+    <!-- Tableau Bootstrap -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nomgroupe</th>
+                <th>Nbrpersonnes</th>
+                <th>Nompays</th>
+                <th>Responsable</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for groupe in groupes %}
+            <tr>
+                <td>{{ groupe.id }}</td>
+                <td>{{ groupe.nomgroupe }}</td>
+                <td>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+                            {{ groupe.nbrpersonnes }}
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Menu item</a></li>
+                          <li><a class="dropdown-item" href="#">Menu item</a></li>
+                          <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td>{{ groupe.nompays }}</td>
+                <td>{{ groupe.responsable }}</td>
+                <td>
+                    <button type="button" class="btn btn-secondary"><a href="{{ path('app_groupe_edit', {'id': groupe.id}) }}">edit</a></button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-secondary"><a href="{{ path('app_groupe_new') }}">Create new</a></button>
+  </div>    
+
+{% endblock %}

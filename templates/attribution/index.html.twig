@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Attribution index{% endblock %}
+
+{% block body %}
+    <h1>Attribution index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for attribution in attributions %}
+            <tr>
+                <td>{{ attribution.id }}</td>
+                <td>
+                {% if is_granted('ROLE_ADMIN') == true %}
+                    <a href="{{ path('app_attribution_show', {'id': attribution.id}) }}">show</a>
+                    <a href="{{ path('app_attribution_edit', {'id': attribution.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_attribution_new') }}">Create new</a>
+{% endblock %}
